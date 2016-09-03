@@ -21,10 +21,7 @@ class ProdutoController extends Controller{
     	return $produtos;
 	}
 
-	public function mostra() {
-
-		$id = Request::route('id');
-
+	public function mostra($id) {
 		$produto = Produto::find($id);
 
 		if(empty($produto)){
@@ -38,14 +35,20 @@ class ProdutoController extends Controller{
 		return view('produto.formulario');
 	}
 
+	public function remove($id) {
+		$produto = Produto::find($id);
+		$produto->delete();
+
+		return redirect()->action('ProdutoController@lista');
+	}
+
 	public function adiciona() {
 
-		$nome = Request::input('nome');
-		$valor = Request::input('valor');
-		$quantidade = Request::input('quantidade');
-		$descricao = Request::input('descricao');
-
-		DB::insert('insert into produto (nome, valor, descricao, quantidade) values (?, ?, ?, ?)', array($nome, $valor, $descricao, $quantidade));
+		//Produto::create(Request::all());
+		
+		$params = Request::all();
+		$produto = new Produto($params);
+		$produto->save();
 
 		return redirect()->action('ProdutoController@lista')->withInput(Request::only('nome'));
 	}

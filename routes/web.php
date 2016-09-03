@@ -15,10 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produtos', 'ProdutoController@lista');
-Route::get('/produtos/json', 'ProdutoController@listaJson');
+Route::get('/produto', 'ProdutoController@lista');
+Route::get('/produto/json', 'ProdutoController@listaJson');
 Route::get('/produto/mostra/{id}', 'ProdutoController@mostra');
 Route::get('/produto/novo', 'ProdutoController@novo');
+Route::get('/produto/remove/{id}', 'ProdutoController@remove');
 Route::post('/produto/adiciona', 'ProdutoController@adiciona');
+
 
 

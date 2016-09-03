@@ -12,6 +12,9 @@
     <td>
     	<a href="/produto/mostra/{{$p->id}}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
     </td>
+    <td>
+      <a href="/produto/remove/{{$p->id}}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+    </td>
   </tr>
   @endforeach
 </table>
