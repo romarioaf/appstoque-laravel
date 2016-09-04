@@ -13,7 +13,18 @@
 		      <a class="navbar-brand" href="/produtos">Estoque Laravel</a>
 		    </div>
 
-		    <ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right">
+			  @if (Auth::guest())
+			    <!-- <li><a href="/auth/login">Login</a></li> -->
+			    <li><a href="/login">Login</a></li>
+			    <li><a href="/register">Register</a></li>
+			  @else
+			    <li>{{ Auth::user()->name }} </li>
+			    <li><a href="/auth/logout">Logout</a></li>
+			  @endif
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
 			  <li>
 			      <a href="{{action('ProdutoController@lista')}}">
 			          Listagem

@@ -4,11 +4,16 @@ namespace estoque\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Request;
+use Auth;
 
 use estoque\Produto;
 use estoque\Http\Requests\ProdutoRequest;
 
 class ProdutoController extends Controller{
+
+	public function __construct() {
+        	$this->middleware('auth', ['only' => ['adiciona', 'remove', 'novo']]);
+    }
 
 	public function lista () {
 
